@@ -36,13 +36,13 @@ void draw()
   background(0); //clear background
 
   fill(100);
-  rect(200, 200, sizeOfInputArea, sizeOfInputArea); //input area should be 2" by 2"
+  rect(200, 500, sizeOfInputArea, sizeOfInputArea); //input area should be 2" by 2"
 
   if (finishTime!=0)
   {
     fill(255);
     textAlign(CENTER);
-    text("Finished", 280, 150);
+    text("Finished", 280, 450);
     return;
   }
 
@@ -50,7 +50,7 @@ void draw()
   {
     fill(255);
     textAlign(CENTER);
-    text("Click to start time!", 280, 150); //display this messsage until the user clicks!
+    text("Click to start time!", 280, 450); //display this messsage until the user clicks!
   }
 
   if (startTime==0 & mousePressed)
@@ -63,20 +63,20 @@ void draw()
     //you will need something like the next 10 lines in your code. Output does not have to be within the 2 inch area!
     textAlign(LEFT); //align the text left
     fill(128);
-    text("Phrase " + (currTrialNum+1) + " of " + totalTrialNum, 70, 50); //draw the trial count
+    text("Phrase " + (currTrialNum+1) + " of " + totalTrialNum, 70, 350); //draw the trial count
     fill(255);
-    text("Target:   " + currentPhrase, 70, 100); //draw the target string
-    text("Entered:  " + currentTyped, 70, 140); //draw what the user has entered thus far 
+    text("Target:   " + currentPhrase, 70, 400); //draw the target string
+    text("Entered:  " + currentTyped, 70, 440); //draw what the user has entered thus far 
     fill(255, 0, 0);
-    rect(620, 300, 100, 100); //drag next button
+    rect(620, 600, 100, 100); //drag next button
     fill(255);
     textFont(createFont("Arial", 20)); //set the font to arial 20
-    text("NEXT > ", 640, 350); //draw next label
+    text("NEXT > ", 640, 650); //draw next label
     textFont(createFont("Arial", 36)); //set the font to arial 36
 
     //my draw code
     textAlign(CENTER);
-    text("" + currentLetter, 200+sizeOfInputArea/2, 200+sizeOfInputArea/5); //draw current letter
+    text("" + currentLetter, 200+sizeOfInputArea/2, 500+sizeOfInputArea/5); //draw current letter
     
     
     String letters = "";
@@ -85,7 +85,7 @@ void draw()
         fill(255, 0, 0);
         strokeWeight(2);
         stroke(0, 0, 0);
-        rect(200+(i%3)*sizeOfInputArea/3, 200+sizeOfInputArea/4+(j%3)*sizeOfInputArea/4, sizeOfInputArea/3, sizeOfInputArea/4); //draw left red button
+        rect(200+(i%3)*sizeOfInputArea/3, 500+sizeOfInputArea/4+(j%3)*sizeOfInputArea/4, sizeOfInputArea/3, sizeOfInputArea/4); //draw left red button
         
         if (j == 0 && i == 0) {
           letters = "_";
@@ -116,7 +116,7 @@ void draw()
         }
         
         fill(0,0,0);
-        text(letters, 200+(i%3)*sizeOfInputArea/3 + sizeOfInputArea/6, 200+sizeOfInputArea/4+(j%3)*sizeOfInputArea/4 + sizeOfInputArea/7);
+        text(letters, 200+(i%3)*sizeOfInputArea/3 + sizeOfInputArea/6, 500+sizeOfInputArea/4+(j%3)*sizeOfInputArea/4 + sizeOfInputArea/7);
       }
     }
   }
@@ -152,7 +152,7 @@ void mousePressed()
         strokeWeight(2);
         stroke(0, 0, 0);
         x = 200+(i%3)*sizeOfInputArea/3;
-        y = 200+sizeOfInputArea/4+(j%3)*sizeOfInputArea/4;
+        y = 500+sizeOfInputArea/4+(j%3)*sizeOfInputArea/4;
         rect(x, y, sizeOfInputArea/3, sizeOfInputArea/4); 
         if (didMouseClick(x, y, sizeOfInputArea/3, sizeOfInputArea/4)) {
           if (j == 0 && i == 0) {
@@ -226,7 +226,7 @@ void mousePressed()
       }
     }
   
-  if (didMouseClick(200, 200, sizeOfInputArea, sizeOfInputArea/4)) //check if click occured in letter area
+  if (didMouseClick(200, 500, sizeOfInputArea, sizeOfInputArea/4)) //check if click occured in letter area
   {
     if (currentLetter=='_') //if underscore, consider that a space bar
       currentTyped+=" ";
@@ -238,7 +238,7 @@ void mousePressed()
   }
 
   //You are allowed to have a next button outside the 2" area
-  if (didMouseClick(800, 00, 200, 200)) //check if click is in next button
+  if (didMouseClick(620, 600, 100, 100)) //check if click is in next button
   {
     nextTrial(); //if so, advance to next trial
   }
