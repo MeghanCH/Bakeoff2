@@ -160,12 +160,8 @@ void mousePressed()
   float y;
   for (int i=0; i<3; i++) { 
       for(int j=0; j<3; j++){
-        fill(255, 0, 0);
-        strokeWeight(2);
-        stroke(0, 0, 0);
         x = 200+(i%3)*sizeOfInputArea/3;
         y = 500+sizeOfInputArea/4+(j%3)*sizeOfInputArea/4;
-        rect(x, y, sizeOfInputArea/3, sizeOfInputArea/4); 
         if (didMouseClick(x, y, sizeOfInputArea/3, sizeOfInputArea/4)) {
           if (j == 0 && i == 0) {
               if(currentTyped.length()!=0){
