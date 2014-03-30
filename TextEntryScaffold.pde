@@ -70,8 +70,9 @@ void draw()
     fill(255, 0, 0);
     rect(620, 300, 100, 100); //drag next button
     fill(255);
-    textFont(createFont("Arial", 20)); //set the font to arial 36
-    text("NEXT > ", 670, 300); //draw next label
+    textFont(createFont("Arial", 20)); //set the font to arial 20
+    text("NEXT > ", 640, 350); //draw next label
+    textFont(createFont("Arial", 36)); //set the font to arial 36
 
     //my draw code
     textAlign(CENTER);
