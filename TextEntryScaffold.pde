@@ -67,22 +67,27 @@ void draw()
     fill(255);
     text("Target:   " + currentPhrase, 70, 400); //draw the target string
     text("Entered:  " + currentTyped, 70, 440); //draw what the user has entered thus far 
-    fill(255, 0, 0);
-    rect(620, 600, 100, 100); //drag next button
+    fill(51, 163, 255);
+    rect(620, 600, 100, 100); //draw next button
     fill(255);
     textFont(createFont("Arial", 20)); //set the font to arial 20
     text("NEXT > ", 640, 650); //draw next label
     textFont(createFont("Arial", 30)); //set the font to arial 36
-
+    
+    // draw backspace box
+    fill(255,0,0);
+    rect(200+sizeOfInputArea*3/4,500,sizeOfInputArea/4,sizeOfInputArea/4);
+    fill(255);
+    text("<-",200+sizeOfInputArea*3/4+sizeOfInputArea/12,500+sizeOfInputArea/7);
+    
     //my draw code
     textAlign(CENTER);
-    text("" + currentLetter, 200+sizeOfInputArea/2, 500+sizeOfInputArea/5); //draw current letter
-    
-    
+    text("" + currentLetter, 200+sizeOfInputArea*3/8, 500+sizeOfInputArea/7); //draw current letter
+     
     String letters = "";
     for (int i=0; i<3; i++) { 
       for(int j=0; j<3; j++){
-        fill(255, 0, 0);
+        fill(51,163,255);
         strokeWeight(2);
         stroke(0, 0, 0);
         rect(200+(i%3)*sizeOfInputArea/3, 500+sizeOfInputArea/4+(j%3)*sizeOfInputArea/4, sizeOfInputArea/3, sizeOfInputArea/4); //draw left red button
@@ -144,6 +149,13 @@ void mousePressed()
 //    if (currentLetter>'z') //wrap back to space (aka underscore)
 //      currentLetter = '_';
 //  }
+    
+    //check if backspace is hit
+    if(didMouseClick(200+sizeOfInputArea*3/4,500,sizeOfInputArea/4,sizeOfInputArea/4) && currentTyped.length()>=2){
+      currentTyped = currentTyped.substring(0,currentTyped.length()-2);
+      currentTyped+="|";
+    }
+    
   float x;
   float y;
   for (int i=0; i<3; i++) { 
@@ -230,7 +242,7 @@ void mousePressed()
       }
     }
   
-  if (didMouseClick(200, 500, sizeOfInputArea, sizeOfInputArea/4)) //check if click occured in letter area
+  if (didMouseClick(200, 500, sizeOfInputArea*3/4, sizeOfInputArea/4)) //check if click occured in letter area
   {
     if(currentTyped.length()!=0){
       currentTyped = currentTyped.substring(0,currentTyped.length()-1);
