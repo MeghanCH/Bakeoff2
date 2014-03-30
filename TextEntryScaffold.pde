@@ -156,7 +156,11 @@ void mousePressed()
         rect(x, y, sizeOfInputArea/3, sizeOfInputArea/4); 
         if (didMouseClick(x, y, sizeOfInputArea/3, sizeOfInputArea/4)) {
           if (j == 0 && i == 0) {
-              currentLetter = '_';  
+              if(currentTyped.length()!=0){
+              currentTyped = currentTyped.substring(0,currentTyped.length()-1);
+              }
+              currentTyped += " |";
+              text("Entered:  " + currentTyped, 70, 440); //draw what the user has entered thus far  
           }
           else if (j == 0 && i == 1) {
               if(currentLetter!='_' && (currentLetter=='a' || currentLetter=='b'))
@@ -231,12 +235,9 @@ void mousePressed()
     if(currentTyped.length()!=0){
       currentTyped = currentTyped.substring(0,currentTyped.length()-1);
     }
-    if (currentLetter=='_') //if underscore, consider that a space bar
-      currentTyped+=" |";
 //    else if (currentLetter=='`' & currentTyped.length()>0) //if `, treat that as a delete command
 //      currentTyped = currentTyped.substring(0, currentTyped.length()-1);
 //    else if (currentLetter!='`') //if not any of the above cases, add the current letter to the typed string
-    else
       
       currentTyped+=currentLetter+"|";
   }
