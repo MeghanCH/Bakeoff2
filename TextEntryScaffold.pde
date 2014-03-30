@@ -26,7 +26,7 @@ void setup()
   Collections.shuffle(Arrays.asList(phrases)); //randomize the order of the phrases
   orientation(PORTRAIT); //can also be LANDSCAPE -- sets orientation on android device
   size(720,1280); //Sets the size of the app. You may want to modify this to your device. Many phones today are 1080 wide by 1920 tall.
-  textFont(createFont("Arial", 36)); //set the font to arial 36
+  textFont(createFont("Arial", 30)); //set the font to arial 36
   noStroke(); //my code doesn't use any strokes.
 }
 
@@ -72,7 +72,7 @@ void draw()
     fill(255);
     textFont(createFont("Arial", 20)); //set the font to arial 20
     text("NEXT > ", 640, 650); //draw next label
-    textFont(createFont("Arial", 36)); //set the font to arial 36
+    textFont(createFont("Arial", 30)); //set the font to arial 36
 
     //my draw code
     textAlign(CENTER);
@@ -228,13 +228,17 @@ void mousePressed()
   
   if (didMouseClick(200, 500, sizeOfInputArea, sizeOfInputArea/4)) //check if click occured in letter area
   {
+    if(currentTyped.length()!=0){
+      currentTyped = currentTyped.substring(0,currentTyped.length()-1);
+    }
     if (currentLetter=='_') //if underscore, consider that a space bar
-      currentTyped+=" ";
+      currentTyped+=" |";
 //    else if (currentLetter=='`' & currentTyped.length()>0) //if `, treat that as a delete command
 //      currentTyped = currentTyped.substring(0, currentTyped.length()-1);
 //    else if (currentLetter!='`') //if not any of the above cases, add the current letter to the typed string
     else
-      currentTyped+=currentLetter;
+      
+      currentTyped+=currentLetter+"|";
   }
 
   //You are allowed to have a next button outside the 2" area
