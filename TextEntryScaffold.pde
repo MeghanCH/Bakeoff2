@@ -163,14 +163,15 @@ void mousePressed()
         x = 200+(i%3)*sizeOfInputArea/3;
         y = 500+sizeOfInputArea/4+(j%3)*sizeOfInputArea/4;
         if (didMouseClick(x, y, sizeOfInputArea/3, sizeOfInputArea/4)) {
-          if(currentTyped.length()!=0){currentTyped = currentTyped.substring(0,currentTyped.length()-1);}
           if (j == 0 && i == 0) {
-              currentTyped += "|";
+            if(currentTyped.length()!=0){currentTyped = currentTyped.substring(0,currentTyped.length()-1);}
+              currentTyped += " |";
               text("Entered:  " + currentTyped, 70, 440); //draw what the user has entered thus far  
           }
           else if (j == 0 && i == 1) {
-              if(currentLetter!='a' || currentLetter!='b' || currentLetter!= 'c'){
-              currentTyped+=currentLetter+"|";
+              if(currentLetter!='a' && currentLetter!='b' && currentLetter!= 'c' && currentLetter!=' '){
+                if(currentTyped.length()!=0){currentTyped = currentTyped.substring(0,currentTyped.length()-1);}
+                currentTyped+=currentLetter+"|";
               }
               if(currentLetter!='_' && (currentLetter=='a' || currentLetter=='b'))
               currentLetter ++;
@@ -180,8 +181,9 @@ void mousePressed()
                 currentLetter = 'a';
           }
           else if (j == 0 && i == 2) {
-              if(currentLetter!='d' || currentLetter!='e' || currentLetter!= 'f'){
-              currentTyped+=currentLetter+"|";
+              if(currentLetter!='d' && currentLetter!='e' && currentLetter!= 'f' && currentLetter!=' '){
+                if(currentTyped.length()!=0){currentTyped = currentTyped.substring(0,currentTyped.length()-1);}
+                currentTyped+=currentLetter+"|";
               }
               if(currentLetter!='_' && (currentLetter=='d' || currentLetter=='e'))
               currentLetter ++;
@@ -191,8 +193,9 @@ void mousePressed()
                 currentLetter = 'd';
           }
           else if (j == 1 && i == 0) {
-              if(currentLetter!='g' || currentLetter!='h' || currentLetter!= 'i'){
-              currentTyped+=currentLetter+"|";
+              if(currentLetter!='g' && currentLetter!='h' && currentLetter!= 'i' && currentLetter!=' '){
+                if(currentTyped.length()!=0){currentTyped = currentTyped.substring(0,currentTyped.length()-1);}              
+                currentTyped+=currentLetter+"|";
               }
               if(currentLetter!='_' && (currentLetter=='g' || currentLetter=='h'))
               currentLetter ++;
@@ -202,8 +205,9 @@ void mousePressed()
                 currentLetter = 'g';
           }
           else if (j == 1 && i == 1) {
-              if(currentLetter!='j' || currentLetter!='k' || currentLetter!= 'l'){
-              currentTyped+=currentLetter+"|";
+              if(currentLetter!='j' && currentLetter!='k' && currentLetter!= 'l' && currentLetter!=' '){
+                if(currentTyped.length()!=0){currentTyped = currentTyped.substring(0,currentTyped.length()-1);}
+                currentTyped+=currentLetter+"|";
               }
               if(currentLetter!='_' && (currentLetter=='j' || currentLetter=='k'))
               currentLetter ++;
@@ -213,8 +217,9 @@ void mousePressed()
                 currentLetter = 'j';
           }
           else if (j == 1 && i == 2) {
-              if(currentLetter!='m' || currentLetter!='n' || currentLetter!= 'o')
-              currentTyped+=currentLetter+"|";
+              if(currentLetter!='m' && currentLetter!='n' && currentLetter!= 'o' && currentLetter!=' '){
+                if(currentTyped.length()!=0){currentTyped = currentTyped.substring(0,currentTyped.length()-1);}
+                currentTyped+=currentLetter+"|";
               }
               if(currentLetter!='_' && (currentLetter=='m' || currentLetter=='n'))
               currentLetter ++;
@@ -224,8 +229,9 @@ void mousePressed()
                 currentLetter = 'm';
           }
           else if (j == 2 && i == 0) {
-              if(currentLetter!='p' || currentLetter!='q' || currentLetter!= 'r' || currentLetter!='s'){
-              currentTyped+=currentLetter+"|";
+              if(currentLetter!='p' && currentLetter!='q' && currentLetter!= 'r' && currentLetter!='s' && currentLetter!=' '){
+                if(currentTyped.length()!=0){currentTyped = currentTyped.substring(0,currentTyped.length()-1);}
+                currentTyped+=currentLetter+"|";
               }
               if(currentLetter!='_' && (currentLetter=='p' || currentLetter=='q' || currentLetter=='r'))
               currentLetter ++;
@@ -235,8 +241,9 @@ void mousePressed()
                 currentLetter = 'p';
           }
           else if (j == 2 && i == 1) {
-              if(currentLetter!='t' || currentLetter!='u' || currentLetter!= 'v'){
-              currentTyped+=currentLetter+"|";
+              if(currentLetter!='t' && currentLetter!='u' && currentLetter!= 'v' && currentLetter!=' '){
+                if(currentTyped.length()!=0){currentTyped = currentTyped.substring(0,currentTyped.length()-1);}
+                currentTyped+=currentLetter+"|";
               }
               if(currentLetter!='_' && (currentLetter=='t' || currentLetter=='u'))
               currentLetter ++;
@@ -246,7 +253,8 @@ void mousePressed()
                 currentLetter = 't';
           }
           else if (j == 2 && i == 2) {
-              if(currentLetter!='w' || currentLetter!='x' || currentLetter!= 'y' || currentLetter!='z'){
+              if(currentLetter!='w' && currentLetter!='x' && currentLetter!= 'y' && currentLetter!='z' && currentLetter!=' '){
+                if(currentTyped.length()!=0){currentTyped = currentTyped.substring(0,currentTyped.length()-1);}                
               currentTyped+=currentLetter+"|";
               }
               if(currentLetter!='_' && (currentLetter=='w' || currentLetter=='x' || currentLetter=='y'))
@@ -262,6 +270,7 @@ void mousePressed()
   
   if (didMouseClick(200, 500, sizeOfInputArea*3/4, sizeOfInputArea/4)) //check if click occured in letter area
   {
+    if(currentLetter!=' '){
     if(currentTyped.length()!=0){
       currentTyped = currentTyped.substring(0,currentTyped.length()-1);
     }
@@ -270,6 +279,7 @@ void mousePressed()
 //    else if (currentLetter!='`') //if not any of the above cases, add the current letter to the typed string
       currentTyped+=currentLetter+"|";
       currentLetter = ' ';
+    }
   }
 
   //You are allowed to have a next button outside the 2" area
