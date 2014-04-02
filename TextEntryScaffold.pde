@@ -25,13 +25,14 @@ String currentPhrase = ""; //the current target phrase
 String currentTyped = ""; //what the user has typed so far
 String currentWord = ""; //current word typed so far
 String currentGuess = "";
+
 WordBuckets wb;
 final int DPIofYourDeviceScreen = 306; //you will need to look up the DPI or PPI of your device to make sure you get the right scale!!
                                       //http://en.wikipedia.org/wiki/List_of_displays_by_pixel_density
 final float sizeOfInputArea = DPIofYourDeviceScreen*1.25; //aka, 1.25 inches square!
 
 //Variables for my silly implementation. You can delete these:
-char currentLetter = '|';
+char currentLetter = ' ';
 
 //You can modify anything in here. This is just a basic implementation.
 void setup()
@@ -186,7 +187,13 @@ void mousePressed()
     if(didMouseClick(200+sizeOfInputArea*3/4,500,sizeOfInputArea/4,sizeOfInputArea/4)){
       if (currentWord.length() == 0) {
         if (currentTyped.length()>=2) {
-          currentTyped = currentTyped.substring(0,currentTyped.length()-2);
+          int lastIndex = currentTyped.lastIndexOf(' ');
+          if (lastIndex == -1) {
+            currentTyped = "";
+          }
+          else {
+            currentTyped = currentTyped.substring(0,lastIndex);
+          }
           currentTyped+="|";
         }
       }
@@ -246,25 +253,32 @@ void mousePressed()
             currentGuess = currentWord;
             matchIndex = 0;
           }
+          fill(0, 0, 0);
+          rect(200+(i%3)*sizeOfInputArea/3, 500+sizeOfInputArea/4+(j%3)*sizeOfInputArea/4, sizeOfInputArea/3, sizeOfInputArea/4);
+         
+          fill(51, 163, 255);
+          rect(200+(i%3)*sizeOfInputArea/3, 500+sizeOfInputArea/4+(j%3)*sizeOfInputArea/4, sizeOfInputArea/3, sizeOfInputArea/4);
         }
       }
     }
   
-  if (didMouseClick(200, 500, sizeOfInputArea*3/4, sizeOfInputArea/4)) //check if click occured in letter area
+  if (didMouseClick(200, 500, sizeOfInputArea*3/4, sizeOfInputArea/4)) //check if click occured in submit area
   {
-
-    if(currentTyped.length()!=0){
-      currentTyped = currentTyped.substring(0,currentTyped.length()-1);
+    if (currentLetter != ' ') {
+      if(currentTyped.length()!=0){
+        currentTyped = currentTyped.substring(0,currentTyped.length()-1);
+      }
+        currentWord = currentGuess;
+        if (currentTyped.length() == 0)  {
+          currentTyped += currentWord+"|";
+        }
+        else {
+          currentTyped += " " + currentWord+"|";
+        }
+        currentWord = "";
+        currentGuess = currentWord;
+        currentLetter = ' ';
     }
-//    else if (currentLetter=='`' & currentTyped.length()>0) //if `, treat that as a delete command
-//      currentTyped = currentTyped.substring(0, currentTyped.length()-1);
-//    else if (currentLetter!='`') //if not any of the above cases, add the current letter to the typed string
-      currentWord = currentGuess;
-      currentTyped+=currentWord+" |";
-      currentWord = "";
-      currentGuess = currentWord;
-      currentLetter = ' ';
-
   }
 
   //You are allowed to have a next button outside the 2" area
@@ -316,6 +330,8 @@ void nextTrial()
   {
     System.out.println("Trials beginning! Starting timer..."); //output we're done
     startTime = millis(); //start the timer!
+    currentWord = "";
+    currentGuess = currentWord;
   }
   else
   {
