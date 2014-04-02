@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileNotFoundException; 
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ void setup()
   noStroke(); //my code doesn't use any strokes.
   
   //path to dictionary file
-    String dictFile = "C://Users//Meghan//Desktop//dict.txt";
+    String dictFile = "E://Documents//processing-2.0.3-windows64//processing-2.0.3//TextEntryScaffold//TextEntryScaffold//data//newDict.txt";
     //word for which keypad equivalents have to be found
     
     //no. of dictionary words to pre-process
@@ -454,23 +454,27 @@ class WordBuckets{
   }
   
   private void loadDict() throws FileNotFoundException, IOException{
-    FileReader fr = null;
-    try{
-      fr = new FileReader(dictFile);
-      BufferedReader br = new BufferedReader(fr);
-      String line;
-      while((line=br.readLine()) != null){
-        line = line.trim();
-        dict.add(line);
-      }
-    }finally{
-      if(fr != null){
-        try{
-          fr.close();
-        }catch(IOException e){
-          
-        }
-      }
-    }
+//    BufferedReader fr = null;
+//    try{
+//      fr = createReader(dictFile);
+//      //BufferedReader br = createReader(fr);
+//      String line;
+//      while((line=fr.readLine()) != null){
+//        line = line.trim();
+//        dict.add(line);
+//      }
+//    }finally{
+//      if(fr != null){
+//        try{
+//          fr.close();
+//        }catch(IOException e){
+//          
+//        }
+//      }
+     String[] dictArray = loadStrings("newDict.txt");
+     for (int i=0; i<dictArray.length; i++) {
+       dict.add(dictArray[i]);  
+     }  
   }
+  
 }
