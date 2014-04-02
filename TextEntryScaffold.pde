@@ -253,10 +253,7 @@ void mousePressed()
             currentGuess = currentWord;
             matchIndex = 0;
           }
-          fill(0, 0, 0);
-          rect(200+(i%3)*sizeOfInputArea/3, 500+sizeOfInputArea/4+(j%3)*sizeOfInputArea/4, sizeOfInputArea/3, sizeOfInputArea/4);
-         
-          fill(51, 163, 255);
+          fill(255, 255, 255);
           rect(200+(i%3)*sizeOfInputArea/3, 500+sizeOfInputArea/4+(j%3)*sizeOfInputArea/4, sizeOfInputArea/3, sizeOfInputArea/4);
         }
       }
@@ -284,6 +281,7 @@ void mousePressed()
   //You are allowed to have a next button outside the 2" area
   if (didMouseClick(620, 600, 100, 100)) //check if click is in next button
   {
+    currentTyped = currentTyped.substring(0,currentTyped.length()-1);
     nextTrial(); //if so, advance to next trial
   }
 }
